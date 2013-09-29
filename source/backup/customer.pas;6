@@ -1,0 +1,39 @@
+unit Customer;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects, contnrs, location;  //classes;
+
+type
+
+    { TCustomer }
+
+  TCustomer = class(TMyObject)
+  private
+  FName: String;
+  FAddress: TAddress;
+  function getAddress: TAddress;
+  procedure setAddress(AValue: TAddress);
+  public
+  property Name: String read FName write FName;
+  property Address: TAddress read getAddress write setAddress;
+  end;
+
+implementation
+
+{ TCustomer }
+
+function TCustomer.getAddress: TAddress;
+begin
+
+end;
+
+procedure TCustomer.setAddress(AValue: TAddress);
+begin
+
+end;
+
+end.

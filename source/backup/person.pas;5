@@ -1,0 +1,44 @@
+unit Person;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects;
+
+type
+
+  { TPerson }
+
+  TPerson = class(TMyObject)
+  private
+    FActive: Boolean;
+    FName: string;
+  public
+    constructor Create;
+    procedure Validate;
+  published
+    property Active: Boolean read FActive write FActive default True;
+    property Name: string read FName write FName;
+
+  end;
+
+implementation
+
+constructor TPerson.Create;
+begin
+  inherited;
+  FActive := True;
+
+end;
+
+procedure TPerson.Validate;
+begin
+  Inherited;
+  AssertData(FName <> '', 'Name must not be empty.');
+end;
+
+ //
+end.
+

@@ -1,0 +1,48 @@
+unit Location;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects, contnrs;  //classes;
+
+type
+
+
+        { TState }
+
+    TState = class(TMyObject)
+    private
+    FName: String;
+    public
+    property Name: String read FName write FName;
+    end;
+
+      { TCity }
+
+  TCity = class(TMyObject)
+  private
+  FName: String;
+  public
+  property Name: String read FName write FName;
+  end;
+
+    { TAddress }
+
+  TAddress = class(TMyObject)
+  private
+  FStreet: String;
+  FNumber: String;
+  FZipCode: String;
+  FType: (Res, Com);
+  public
+  property Street: String read FStreet write FStreet;
+  property Number: String read FNumber write FNumber;
+  property ZipCode: String read FZipCode write FZipCode;
+  end;
+
+implementation
+
+end.
+

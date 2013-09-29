@@ -1,0 +1,23 @@
+unit Customer;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects, contnrs;  //classes;
+
+type
+
+    { TCustomer }
+
+  TCustomer = class(TMyObject)
+  private
+  FName: String;
+  public
+  property Name: String read FName write FName;
+  end;
+
+implementation
+
+end.

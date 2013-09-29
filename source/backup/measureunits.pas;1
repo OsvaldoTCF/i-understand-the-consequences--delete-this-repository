@@ -1,0 +1,25 @@
+unit MeasureUnits;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects, contnrs; //classes;
+
+type
+
+    { TMeasure }
+
+  TMeasure = class(TMyObject)
+  private
+  FName: String;
+  FRepresentation: String;
+  FType: (m,l,u);
+  public
+  property Name: String read FName write FName;
+  end;
+
+implementation
+
+end.

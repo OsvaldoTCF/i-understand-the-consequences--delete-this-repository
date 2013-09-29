@@ -1,0 +1,31 @@
+unit Customer;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, Person;
+
+type
+
+     { TCustomerType }
+
+  TCustomerType = class(TPerson)
+
+
+  end;
+
+    { TCustomer }
+
+  TCustomer = class(TPerson)
+  private
+    FType: TCostumerType;
+  public
+    Customer: TPersonType read getCostumerType write setCostumerType;
+  end;
+
+implementation
+
+
+end.

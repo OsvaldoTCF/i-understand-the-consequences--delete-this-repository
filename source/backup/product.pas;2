@@ -1,0 +1,34 @@
+unit Product;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects, contnrs; //classes;
+
+type
+
+    { TProduct }
+
+  TProduct = class(TMyObject)
+  private
+  FDesc: double;
+  FName: String;
+  FUnitPrice: Double;
+  FQty: Integer;
+  FTaxName: String;
+  FTaxRate: Double;
+  public
+  property Name: String read FName write FName;
+  property Desc: Double read FDesc write FDesc;
+  property qty: Integer read FQty write FQty;
+  property UnitPrice: Double read FUnitPrice write FUnitPrice;
+  property TaxName: String read FTaxName write FTaxName;
+  property TaxRate: Double read FTaxRate write FTaxRate;
+  end;
+
+implementation
+
+end.
+

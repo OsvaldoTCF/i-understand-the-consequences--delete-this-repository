@@ -1,0 +1,197 @@
+unit Invoice;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  SysUtils, MyObjects, contnrs, product, customer;  //classes;
+
+type
+
+    { TInvoiceItem }
+
+  TInvoiceItem = class(TMyObject)
+  private
+  FDesc: double;
+  FProduct: TProduct;
+  FUnitPrice: Double;
+  FQty: Integer;
+  FTaxName: String;
+  FTaxRate: Double;
+  function getProduct: TProduct;
+  procedure setProduct(AValue: TProduct);
+  public
+  property Product: TProduct read getProduct write setProduct;
+  property Desc: Double read FDesc write FDesc;
+  property qty: Integer read FQty write FQty;
+  property UnitPrice: Double read FUnitPrice write FUnitPrice;
+  property TaxName: String read FTaxName write FTaxName;
+  property TaxRate: Double read FTaxRate write FTaxRate;
+  end;
+
+   { TInvoiceItem }
+
+  TInvoiceItems = class(TObjectList)
+
+  end;
+
+
+  { TInvoice }
+
+  TInvoice = class(TMyObject)
+  private
+  FCustomer: TCustomer;
+  FTerms: String;
+  FCurrencyCode: String;
+  FItems: TInvoiceItems;
+  FInvoiceNo: String;
+  FEMailTo: String;
+  FEMailFrom: String;
+  function getCustomer: TCustomer;
+  procedure setCustomer(AValue: TCustomer);
+  public
+  constructor Create; virtual;
+  destructor Destroy; override;
+  property InvoiceNo: String read FInvoiceNo write FInvoiceNo;
+  property Items: TInvoiceItems read FItems;
+  property EMailFrom: String read FEMailFrom write FEMailFrom;
+  property EMailTo: String read FEMailTo write FEMailTo;
+  property CurrencyCode: String read FCurrencyCode write FCurrencyCode;
+  property Terms: String read FTerms write FTerms;
+  property Customer: TCustomer read getCustomer write setCustomer;
+  end;
+
+
+implementation
+
+{ TInvoiceItem }
+
+function TInvoiceItem.getProduct: TProduct;
+begin
+
+end;
+
+procedure TInvoiceItem.setProduct(AValue: TProduct);
+begin
+
+end;
+
+
+{ TInvoice }
+
+function TInvoice.getCustomer: TCustomer;
+begin
+
+end;
+
+procedure TInvoice.setCustomer(AValue: TCustomer);
+begin
+
+end;
+
+constructor TInvoice.Create;
+begin
+
+end;
+
+destructor TInvoice.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{
+public
+constructor Create(acustomer: TCustomer);
+function AddItem(aproduct: TProduct; aQty: integer): TInvoiceItem;
+procedure AcceptPayment(aAmount: double; aPaymentDate: TDateTime);
+function Status: TInvoiceStatus; // current, overdue, paid, void...
+
+
+type
+   TInvoiceLine = class
+     // line properties
+   end;
+
+   TInvoice = class;
+
+   TInvoiceEnumerator = class
+   private
+     fIndex: Integer;
+     fList: TObjectList;
+   public
+     constructor Create(Invoice: TInvoice);
+     function MoveNext: Boolean;
+     function GetCurrent: TInvoiceLine;
+     property Current: TInvoiceLine read GetCurrent;
+   end;
+
+   TInvoice = class
+     private
+       fLines: TObjectList;
+       function GetNumberOfLines: Integer;
+       function GetLine(Index: Integer): TInvoiceLine;
+     public
+       property NumberOfLines: Integer read GetNumberOfLines;
+       property Lines[Index: Integer]:TInvoiceLine read GetLine; default;
+       function AddLine: TInvoiceLine;
+       function GetEnumerator: TInvoiceEnumerator;
+   end;
+
+implementation
+
+{ TInvoiceEnumerator }
+
+constructor TInvoiceEnumerator.Create(Invoice: TInvoice);
+begin
+   inherited Create;
+
+   fIndex := -1;
+
+   fList := Invoice.fLines;
+end;
+
+function TInvoiceEnumerator.GetCurrent: TInvoiceLine;
+begin
+   Result := TInvoiceLine(fList[fIndex]);
+end;
+
+function TInvoiceEnumerator.MoveNext: Boolean;
+begin
+   Result := fIndex < fList.Count - 1;
+
+   if Result then
+     Inc(fIndex);
+end;
+
+{ TInvoice }
+
+function TInvoice.AddLine: TInvoiceLine;
+begin
+   Result := TInvoiceLine.Create;
+end;
+
+function TInvoice.GetNumberOfLines: Integer;
+begin
+   Result := fLines.Count;
+end;
+
+function TInvoice.GetEnumerator: TInvoiceEnumerator;
+begin
+   Result := TInvoiceEnumerator.Create(self);
+end;
+
+function TInvoice.GetLine(Index: Integer): TInvoiceLine;
+begin
+   Result := TInvoiceLine(fLines[Index]);
+end;
+
+end.
+
+
+
+
+}
+
+end.
+

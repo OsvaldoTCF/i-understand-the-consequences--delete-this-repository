@@ -1,0 +1,51 @@
+unit Actions;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  BrookDBAction, SysUtils, Person;
+
+type
+  TPersonAction = class(TBrookDBAction)
+  public
+    procedure Get; override;
+  end;
+
+implementation
+
+procedure TPersonAction.Get;
+var
+  VPerson: TPerson;
+
+begin
+  VPerson := TPerson.Create;
+  try
+    if Table.Open.Empty then
+    begin
+      VPerson.Name := 'Roger Waters';
+      VPerson.Validate;
+      WriteLn(VPerson.DataJSON);
+      Table.Insert(VPerson.DataJSON).Apply;
+      Write('Please use F5 to show the inserted object ...');
+    end
+    else
+    begin
+      VPerson.DataJSON := Table.First.Row;
+      Write('Active: %s, Name: %s, Age: %d, Weight: %f, LastUpdate: %s', [
+        BoolToStr(VPerson.Active, 'Y', 'N'), VPerson.Name, VPerson.Age,
+        VPerson.Weight, FormatDateTime('yyyy/mm/dd hh:nn:ss',
+        VPerson.LastUpdate)]);
+
+    end;
+
+  finally
+    VPerson.Free;
+  end;
+end;
+  //
+initialization
+  TPersonAction.Register('person', '*');
+
+end.
